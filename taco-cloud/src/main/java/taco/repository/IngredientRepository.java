@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface IngredientRepository {
     List<Ingredient> findAll();
-    Ingredient findOne(Long id);
+    Ingredient findOne(String id);
     Ingredient save(Ingredient ingredient);
 }
