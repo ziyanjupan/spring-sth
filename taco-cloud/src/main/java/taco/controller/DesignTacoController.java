@@ -7,13 +7,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import taco.domain.Ingredient;
+import taco.domain.Order;
 import taco.domain.Taco;
 import taco.repository.IngredientRepository;
-import taco.repository.JdbcIngredientRepository;
+import taco.repository.TacoRepository;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,10 +24,13 @@ import java.util.stream.Collectors;
 public class DesignTacoController {
 
     private IngredientRepository ingredientRepository;
+    private TacoRepository tacoRepository;
 
     @Autowired
-    public DesignTacoController(IngredientRepository ingredientRepository) {
+    public DesignTacoController(IngredientRepository ingredientRepository,
+                                TacoRepository tacoRepository) {
         this.ingredientRepository = ingredientRepository;
+        this.tacoRepository = tacoRepository;
     }
 
     @GetMapping
@@ -56,12 +59,24 @@ public class DesignTacoController {
                 .collect(Collectors.toList());
     }
 
+    @ModelAttribute("order")
+    public Order order() {
+        return new Order();
+    }
+
+    @ModelAttribute("taco")
+    public Taco taco() {
+        return new Taco();
+    }
+
     @PostMapping
-    public String processDesign(@Valid Taco design, Errors errors) {
+    public String processDesign(@Valid Taco design, Errors errors,
+                                @ModelAttribute Order order) {
         if (errors.hasErrors()) {
             return "design";
         }
-        //todo save logic
+        Taco taco = tacoRepository.save(design);
+        order.addTaco(taco);
         log.debug("Process design" + design);
         return "redirect:/orders/current";
     }

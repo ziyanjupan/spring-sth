@@ -1,9 +1,10 @@
-package taco.repository;
+package taco.repository.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import taco.domain.Ingredient;
+import taco.repository.IngredientRepository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
