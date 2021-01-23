@@ -1,13 +1,16 @@
 spring:
   thymeleaf:
     cache: false
-  datasource:
-    url: jdbc:mysql://localhost/tacocloud
-    username: tacodb
-    password: tacopassword
-    driver-class-name: com.mysql.jdbc.Driver
-    schema: schema.sql
-    data: data.sql
+#  datasource:
+#    url: jdbc:mysql://localhost/tacocloud
+#    username: tacodb
+#    password: tacopassword
+#    driver-class-name: com.mysql.jdbc.Driver
+#    schema: schema.sql
+#    data: data.sql
+
+http:
+  port: 8080
 
 server:
   port: 8443
@@ -23,13 +26,13 @@ logging:
   file:
     path: /logs/TacoCloud.log
 
-#  h2:
-#    console:
-#      enabled: true
-#  datasource:
-#    url:
-#      jdbc: h2:mem:testdb
-#url:jdbc:h2:mem:testdb
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url:
+      jdbc: h2:mem:testdb
+
 
 #server:
 #  port: 0
