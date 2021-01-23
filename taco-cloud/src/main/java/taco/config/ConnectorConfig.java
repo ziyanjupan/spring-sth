@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * 重定向配置
  */
-@Configuration
+//@Configuration
 public class ConnectorConfig {
 
     @Value("${http.port}")
