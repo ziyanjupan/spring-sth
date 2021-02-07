@@ -1,14 +1,48 @@
 spring:
   thymeleaf:
     cache: false
+#  datasource:
+#    url: jdbc:mysql://localhost/tacocloud
+#    username: tacodb
+#    password: tacopassword
+#    driver-class-name: com.mysql.jdbc.Driver
+#    schema: schema.sql
+#    data: data.sql
+
+#http:
+#  port: 8080
+
+server:
+  port: 8080
+#  ssl:
+#    key-store: C:\Users\xiagu\mykeys.jks
+#    key-store-password: letmein
+#    key-password: letmein
+
+logging:
+  level:
+    root: WARN
+    org.springframework.security: DEBUG
+  file:
+    path: /logs/TacoCloud.log
+
   h2:
     console:
       enabled: true
   datasource:
     url:
       jdbc: h2:mem:testdb
-#url:jdbc:h2:mem:testdb
 
-server:
-  port: 0
 
+#server:
+#  port: 0
+#  暴露Actuator Endpoints
+# Use "*" to expose all endpoints, or a comma-separated list to expose selected ones
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: true
